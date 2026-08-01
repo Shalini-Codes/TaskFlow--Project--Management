@@ -1,0 +1,106 @@
+/* ==========================================================================
+   TaskFlow Design System - Design Tokens & CSS Custom Properties
+   ========================================================================== */
+
+:root {
+  /* Brand & Theme Colors (HSL Palette) */
+  --primary-50: hsl(238, 100%, 97%);
+  --primary-100: hsl(236, 100%, 93%);
+  --primary-200: hsl(236, 96%, 86%);
+  --primary-300: hsl(238, 93%, 77%);
+  --primary-400: hsl(241, 91%, 68%);
+  --primary-500: hsl(245, 82%, 60%);
+  --primary-600: hsl(248, 74%, 54%);
+  --primary-700: hsl(250, 67%, 46%);
+  --primary-800: hsl(251, 65%, 37%);
+  --primary-900: hsl(252, 60%, 28%);
+
+  /* Accent Colors */
+  --accent-indigo: hsl(245, 82%, 60%);
+  --accent-purple: hsl(270, 75%, 60%);
+  --accent-emerald: hsl(155, 75%, 42%);
+  --accent-amber: hsl(38, 92%, 50%);
+  --accent-rose: hsl(346, 84%, 61%);
+  --accent-sky: hsl(199, 89%, 48%);
+
+  /* Status Colors */
+  --status-todo: hsl(215, 85%, 55%);
+  --status-todo-bg: hsl(215, 85%, 96%);
+  --status-in-progress: hsl(38, 92%, 50%);
+  --status-in-progress-bg: hsl(38, 92%, 95%);
+  --status-done: hsl(155, 75%, 42%);
+  --status-done-bg: hsl(155, 75%, 95%);
+
+  /* Priority Colors */
+  --priority-high: hsl(346, 84%, 61%);
+  --priority-high-bg: hsl(346, 84%, 96%);
+  --priority-medium: hsl(38, 92%, 50%);
+  --priority-medium-bg: hsl(38, 92%, 95%);
+  --priority-low: hsl(215, 85%, 55%);
+  --priority-low-bg: hsl(215, 85%, 96%);
+
+  /* Light Theme Surface & Neutral Colors */
+  --bg-app: hsl(220, 20%, 97%);
+  --bg-surface: hsl(0, 0%, 100%);
+  --bg-surface-elevated: hsl(0, 0%, 100%);
+  --bg-sidebar: hsl(222, 25%, 98%);
+  --bg-header: hsl(0, 0%, 100%);
+  --bg-input: hsl(220, 20%, 96%);
+  --bg-hover: hsl(220, 15%, 93%);
+  --bg-active: hsl(220, 20%, 90%);
+  --bg-card: hsl(0, 0%, 100%);
+  --bg-column: hsl(220, 18%, 95%);
+
+  /* Light Theme Text Colors */
+  --text-primary: hsl(222, 47%, 11%);
+  --text-secondary: hsl(215, 16%, 47%);
+  --text-tertiary: hsl(215, 14%, 65%);
+  --text-on-primary: hsl(0, 0%, 100%);
+  --text-muted: hsl(215, 16%, 58%);
+
+  /* Borders & Glassmorphism */
+  --border-light: hsl(220, 15%, 90%);
+  --border-subtle: hsl(220, 15%, 93%);
+  --border-focus: var(--primary-500);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.4);
+
+  /* Elevation & Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.35);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'Outfit', 'Inter', -apple-system, sans-serif;
+
+  /* Font Sizes */
+  --font-xs: 0.75rem;    /* 12px */
+  --font-sm: 0.875rem;   /* 14px */
+  --font-base: 1rem;     /* 16px */
+  --font-lg: 1.125rem;   /* 18px */
+  --font-xl: 1.25rem;    /* 20px */
+  --font-2xl: 1.5rem;    /* 24px */
+  --font-3xl: 1.875rem;  /* 30px */
+
+  /* Border Radii */
+  --radius-xs: 0.25rem;  /* 4px */
+  --radius-sm: 0.375rem; /* 6px */
+  --radius-md: 0.5rem;   /* 8px */
+  --radius-lg: 0.75rem;  /* 12px */
+  --radius-xl: 1rem;     /* 16px */
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout Sizes */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --navbar-height: 64px;
+}

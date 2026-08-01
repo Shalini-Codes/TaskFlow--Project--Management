@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Project Management Dashboard</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="TaskFlow - Lightweight production-grade project management board with Kanban drag and drop, task CRUD, and REST API integration.">
+
+  <!-- Google Fonts (Inter & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./styles/variables.css">
+  <link rel="stylesheet" href="./styles/theme.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/components.css">
+  <link rel="stylesheet" href="./styles/kanban.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar Root -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Workspace Area -->
+    <div class="main-wrapper">
+      <!-- Top Navbar Root -->
+      <div id="navbar-container"></div>
+
+      <!-- Main Page View Portal -->
+      <main id="main-content">
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 50vh;">
+          <div class="skeleton" style="width: 60px; height: 60px; border-radius: 50%;"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Floating Portals -->
+  <div id="toast-container"></div>
+
+  <!-- Entry Script -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
