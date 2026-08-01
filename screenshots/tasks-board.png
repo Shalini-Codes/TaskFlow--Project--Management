@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://shalini-codes.github.io/TaskFlow-%2DProject-%2DManagement/#tasks -->
+<html lang="en" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Project Management Dashboard</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="TaskFlow - Lightweight production-grade project management board with Kanban drag and drop, task CRUD, and REST API integration.">
+
+  <!-- Google Fonts (Inter & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./tasks-board_files/css2" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./tasks-board_files/variables.css">
+  <link rel="stylesheet" href="./tasks-board_files/theme.css">
+  <link rel="stylesheet" href="./tasks-board_files/main.css">
+  <link rel="stylesheet" href="./tasks-board_files/components.css">
+  <link rel="stylesheet" href="./tasks-board_files/kanban.css">
+<link type="text/css" rel="stylesheet" href="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/css/mcafee_fonts.css"></head>
+<body>
+  <div id="app">
+    <!-- Sidebar Root -->
+    <div id="sidebar-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#dashboard" class="brand-logo">
+            <div class="brand-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span>TaskFlow</span>
+          </a>
+        </div>
+
+        <nav class="sidebar-nav">
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#dashboard" class="nav-item ">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+              <span>Dashboard</span>
+            </a>
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#tasks" class="nav-item active">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+              <span>Tasks Board</span>
+            </a>
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#team" class="nav-item ">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+              <span>Team Directory</span>
+            </a>
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#profile" class="nav-item ">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <span>Settings &amp; Profile</span>
+            </a>
+          
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#login" class="nav-item" style="color: var(--accent-rose);">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <span>Log Out</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Main Workspace Area -->
+    <div class="main-wrapper">
+      <!-- Top Navbar Root -->
+      <div id="navbar-container">
+      <header class="navbar">
+        <div class="navbar-left">
+          <button class="btn-icon mobile-menu-btn" aria-label="Toggle Sidebar Menu">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <h1 class="page-title">Tasks &amp; Kanban Workspace</h1>
+        </div>
+
+        <div class="navbar-right">
+          <div class="nav-search">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="global-search-input" placeholder="Search tasks, descriptions..." aria-label="Search tasks">
+          </div>
+
+          <button class="btn-icon theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Toggle Dark/Light Mode">
+            
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+            
+          </button>
+
+          <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#profile" class="user-profile-pill" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); background: var(--bg-hover);">
+            <img src="./tasks-board_files/photo-1494790108377-be9c29b29330" alt="Alex Morgan" class="avatar" style="width: 28px; height: 28px;">
+            <span style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary); display: var(--display-user-name, inline);">Alex Morgan</span>
+          </a>
+        </div>
+      </header>
+    </div>
+
+      <!-- Main Page View Portal -->
+      <main id="main-content">
+      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <!-- Workspace Filter Controls Header -->
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1rem 1.25rem; background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl);">
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <!-- Status Filter -->
+            <select id="filter-status" class="select" style="width: auto; padding-right: 2rem;">
+              <option value="all" selected="">All Statuses</option>
+              <option value="todo">To Do</option>
+              <option value="in_progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+
+            <!-- Priority Filter -->
+            <select id="filter-priority" class="select" style="width: auto; padding-right: 2rem;">
+              <option value="all" selected="">All Priorities</option>
+              <option value="high">High Priority</option>
+              <option value="medium">Medium Priority</option>
+              <option value="low">Low Priority</option>
+            </select>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <!-- View Mode Switcher -->
+            <div style="display: flex; background: var(--bg-hover); padding: 0.2rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <button id="view-mode-kanban" class="btn-icon active" style="background:var(--bg-surface); box-shadow:var(--shadow-xs);" title="Kanban Board View">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+              </button>
+              <button id="view-mode-list" class="btn-icon " style="" title="List Table View">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+              </button>
+            </div>
+
+            <!-- New Task Trigger -->
+            <button id="tasks-create-btn" class="btn btn-primary">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+              <span>Add Task</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Board / Table View Root -->
+        <div id="kanban-board-container">
+      <div class="kanban-board">
+        
+            <div class="kanban-column" data-status="todo">
+              <div class="column-header">
+                <div class="column-title">
+                  <span>📝</span>
+                  <span>To Do</span>
+                </div>
+                <span class="column-count">1</span>
+              </div>
+              <div class="task-list" data-status="todo">
+                
+      <div class="task-card" draggable="true" data-id="t5" id="card-t5">
+        <div class="card-header">
+          <span class="badge badge-priority-low">low priority</span>
+          <div class="card-actions" style="display: flex; gap: 0.2rem;">
+            <button class="btn-icon edit-task-btn" data-id="t5" aria-label="Edit task" title="Edit task">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon delete-task-btn" data-id="t5" aria-label="Delete task" title="Delete task" style="color: var(--accent-rose);">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="card-title">Mobile Sidebar Drawer Navigation</h3>
+        <p class="card-description">Ensure smooth responsive drawer toggle for tablet and mobile viewports below 1024px.</p>
+
+        <div class="card-footer">
+          <div class="card-due-date ">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Aug 12</span>
+          </div>
+
+          <div class="avatar" title="Assigned to Elena Rostova">
+            <img src="./tasks-board_files/photo-1534528741775-53994a69daeb" alt="Elena Rostova" style="width:100%;height:100%;border-radius:50%;">
+          </div>
+        </div>
+      </div>
+    
+              </div>
+            </div>
+          
+            <div class="kanban-column" data-status="in_progress">
+              <div class="column-header">
+                <div class="column-title">
+                  <span>⚡</span>
+                  <span>In Progress</span>
+                </div>
+                <span class="column-count">2</span>
+              </div>
+              <div class="task-list" data-status="in_progress">
+                
+      <div class="task-card" draggable="true" data-id="t2" id="card-t2">
+        <div class="card-header">
+          <span class="badge badge-priority-high">high priority</span>
+          <div class="card-actions" style="display: flex; gap: 0.2rem;">
+            <button class="btn-icon edit-task-btn" data-id="t2" aria-label="Edit task" title="Edit task">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon delete-task-btn" data-id="t2" aria-label="Delete task" title="Delete task" style="color: var(--accent-rose);">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="card-title">Implement Kanban Drag &amp; Drop</h3>
+        <p class="card-description">Add HTML5 drag and drop event listeners to allow cards to be moved seamlessly between columns.</p>
+
+        <div class="card-footer">
+          <div class="card-due-date ">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Aug 8</span>
+          </div>
+
+          <div class="avatar" title="Assigned to Sarah Chen">
+            <img src="./tasks-board_files/photo-1517841905240-472988babdf9" alt="Sarah Chen" style="width:100%;height:100%;border-radius:50%;">
+          </div>
+        </div>
+      </div>
+    
+      <div class="task-card" draggable="true" data-id="t4" id="card-t4">
+        <div class="card-header">
+          <span class="badge badge-priority-medium">medium priority</span>
+          <div class="card-actions" style="display: flex; gap: 0.2rem;">
+            <button class="btn-icon edit-task-btn" data-id="t4" aria-label="Edit task" title="Edit task">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon delete-task-btn" data-id="t4" aria-label="Delete task" title="Delete task" style="color: var(--accent-rose);">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="card-title">Add Toast Notification Manager</h3>
+        <p class="card-description">Create floating notifications for API success, validation errors, and deletion confirmations.</p>
+
+        <div class="card-footer">
+          <div class="card-due-date ">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Aug 10</span>
+          </div>
+
+          <div class="avatar" title="Assigned to Alex Morgan">
+            <img src="./tasks-board_files/photo-1494790108377-be9c29b29330" alt="Alex Morgan" style="width:100%;height:100%;border-radius:50%;">
+          </div>
+        </div>
+      </div>
+    
+              </div>
+            </div>
+          
+            <div class="kanban-column" data-status="done">
+              <div class="column-header">
+                <div class="column-title">
+                  <span>✅</span>
+                  <span>Done</span>
+                </div>
+                <span class="column-count">2</span>
+              </div>
+              <div class="task-list" data-status="done">
+                
+      <div class="task-card" draggable="true" data-id="t1" id="card-t1">
+        <div class="card-header">
+          <span class="badge badge-priority-high">high priority</span>
+          <div class="card-actions" style="display: flex; gap: 0.2rem;">
+            <button class="btn-icon edit-task-btn" data-id="t1" aria-label="Edit task" title="Edit task">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon delete-task-btn" data-id="t1" aria-label="Delete task" title="Delete task" style="color: var(--accent-rose);">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="card-title">Architect REST API Service Layer</h3>
+        <p class="card-description">Build robust fetch wrapper supporting GET, POST, PUT, DELETE operations with fallback storage.</p>
+
+        <div class="card-footer">
+          <div class="card-due-date ">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Aug 5</span>
+          </div>
+
+          <div class="avatar" title="Assigned to Alex Morgan">
+            <img src="./tasks-board_files/photo-1494790108377-be9c29b29330" alt="Alex Morgan" style="width:100%;height:100%;border-radius:50%;">
+          </div>
+        </div>
+      </div>
+    
+      <div class="task-card" draggable="true" data-id="t3" id="card-t3">
+        <div class="card-header">
+          <span class="badge badge-priority-medium">medium priority</span>
+          <div class="card-actions" style="display: flex; gap: 0.2rem;">
+            <button class="btn-icon edit-task-btn" data-id="t3" aria-label="Edit task" title="Edit task">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon delete-task-btn" data-id="t3" aria-label="Delete task" title="Delete task" style="color: var(--accent-rose);">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="card-title">Design Dark Theme Token System</h3>
+        <p class="card-description">Define HSL color variables in variables.css and theme.css for light/dark mode persistence.</p>
+
+        <div class="card-footer">
+          <div class="card-due-date ">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Aug 4</span>
+          </div>
+
+          <div class="avatar" title="Assigned to Marcus Vance">
+            <img src="./tasks-board_files/photo-1539571696357-5a69c17a67c6" alt="Marcus Vance" style="width:100%;height:100%;border-radius:50%;">
+          </div>
+        </div>
+      </div>
+    
+              </div>
+            </div>
+          
+      </div>
+    </div>
+      </div>
+    </main>
+    </div>
+  </div>
+
+  <!-- Floating Portals -->
+  <div id="toast-container"></div>
+
+  <!-- Entry Script -->
+  <script type="module" src="./tasks-board_files/app.js.download"></script>
+
+
+<span id="PING_CONTENT_DLS_POPUP" style="display: none;"></span><div style="background-color: transparent; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; bottom: 15px; display: block; margin: 0px; opacity: 1; padding: 0px; position: fixed; right: 15px; z-index: 2147483647;"><template shadowrootmode="closed"><style>/*!
+ * 
+ *     MCAFEE RESTRICTED CONFIDENTIAL
+ *     Copyright (c) 2026 McAfee, LLC
+ *
+ *     The source code contained or described herein and all documents related
+ *     to the source code ("Material") are owned by McAfee or its
+ *     suppliers or licensors. Title to the Material remains with McAfee
+ *     or its suppliers and licensors. The Material contains trade
+ *     secrets and proprietary and confidential information of McAfee or its
+ *     suppliers and licensors. The Material is protected by worldwide copyright
+ *     and trade secret laws and treaty provisions. No part of the Material may
+ *     be used, copied, reproduced, modified, published, uploaded, posted,
+ *     transmitted, distributed, or disclosed in any way without McAfee's prior
+ *     express written permission.
+ *
+ *     No license under any patent, copyright, trade secret or other intellectual
+ *     property right is granted to or conferred upon you by disclosure or
+ *     delivery of the Materials, either expressly, by implication, inducement,
+ *     estoppel or otherwise. Any license under such intellectual property rights
+ *     must be expressed and approved by McAfee in writing.
+ *
+ */
+@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Thin.ttf") format("truetype");font-weight:100;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ThinItalic.ttf") format("truetype");font-weight:100;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraLight.ttf") format("truetype");font-weight:200;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraLightItalic.ttf") format("truetype");font-weight:200;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Light.ttf") format("truetype");font-weight:300;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-LightItalic.ttf") format("truetype");font-weight:300;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Regular.ttf") format("truetype");font-weight:400;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Italic.ttf") format("truetype");font-weight:400;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Medium.ttf") format("truetype");font-weight:500;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-MediumItalic.ttf") format("truetype");font-weight:500;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-SemiBoldItalic.ttf") format("truetype");font-weight:600;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Bold.ttf") format("truetype");font-weight:700;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-BoldItalic.ttf") format("truetype");font-weight:700;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");font-weight:800;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Black.ttf") format("truetype");font-weight:900;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-BlackItalic.ttf") format("truetype");font-weight:900;font-style:italic}*{border:0;box-sizing:border-box;font:inherit;font-family:"McAfeePoppins",Helvetica,Arial;font-size:100%;margin:0;padding:0;vertical-align:baseline;outline:none}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}html,body{background-color:#f5f6fa;font-family:"McAfeePoppins",Helvetica,Arial;line-height:1;height:100%;width:100%}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}b{font-weight:bold}img{display:block}.dls__container{align-items:center;display:flex;margin:0 auto;margin-top:50px;position:relative}.dls__popup__expanded{align-items:center;overflow:hidden;border-radius:100px;cursor:pointer;display:flex;left:0;padding:15px;position:absolute;height:95px;width:383px;background-color:#fff;transition:all .3s ease-in-out}.dls__popup__expanded .dls__icon{height:65px;width:73px}.content{margin-left:12px}.content .content__images{display:flex;align-items:center;width:250px}.content .content__images .seperator__line{margin-left:5px;margin-right:10px}.content .content__images #dls_close_icon{cursor:pointer;margin-left:auto;margin-right:0px}.content p{font-family:"McAfeePoppins",Helvetica,Arial;font-weight:"400";font-size:14px;line-height:20px;margin-top:8px;color:#4258ff;width:250px;cursor:pointer}.shield{overflow:hidden;box-shadow:0px 2px 4px 0px rgba(33,41,52,.12),0px -1px 2px 0px rgba(0,0,0,.08);align-items:center;border-radius:100px;bottom:0;display:flex;height:95px;justify-content:center;position:absolute;right:0;width:383px;transition:all .3s ease-in-out}.shield__circle{display:flex;justify-content:center;align-items:center;width:55px;height:55px;background-color:#c01818;transition:all .6s ease-in-out .2s;z-index:1;opacity:0}
+
+/*# sourceMappingURL=../sourceMap/chrome/css/download_scan_popup.css.map*/</style><div class="dls__container">
+  <div class="shield" style="background: transparent; opacity: 0.1; display: none;">
+    <div class="shield__circle" style="opacity: 1;">
+      <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/mcafee_logo_white.svg?secret=uax22h" x-mcsrc="" id="dls_ballon_icon" x-mcsrcparsed="true">
+    </div>
+    <div class="dls__popup__expanded" style="opacity: 0;">
+      <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/download_scan_icon.svg?secret=uax22h" x-mcsrc="" class="dls__icon" x-mcsrcparsed="true">
+      <div class="content">
+        <div class="content__images">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/mcafee_logo_red.svg?secret=uax22h" x-mcsrc="" id="dls_mcafee_logo" x-mcsrcparsed="true">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/seperator_line.svg?secret=uax22h" x-mcsrc="" class="seperator__line" x-mcsrcparsed="true">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/webadvisor.svg?secret=uax22h" x-mcsrc="" x-mcsrcparsed="true">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/close-outline.svg?secret=uax22h" x-mcsrc="" id="dls_close_icon" x-mcsrcparsed="true">
+        </div>
+        <p id="download_scan_popup_expanded_descriptions">Your download's being scanned. We'll let you know if there's an issue.</p>
+      </div>
+    </div>
+  </div>
+</div><style>/*!
+ * 
+ *     MCAFEE RESTRICTED CONFIDENTIAL
+ *     Copyright (c) 2026 McAfee, LLC
+ *
+ *     The source code contained or described herein and all documents related
+ *     to the source code ("Material") are owned by McAfee or its
+ *     suppliers or licensors. Title to the Material remains with McAfee
+ *     or its suppliers and licensors. The Material contains trade
+ *     secrets and proprietary and confidential information of McAfee or its
+ *     suppliers and licensors. The Material is protected by worldwide copyright
+ *     and trade secret laws and treaty provisions. No part of the Material may
+ *     be used, copied, reproduced, modified, published, uploaded, posted,
+ *     transmitted, distributed, or disclosed in any way without McAfee's prior
+ *     express written permission.
+ *
+ *     No license under any patent, copyright, trade secret or other intellectual
+ *     property right is granted to or conferred upon you by disclosure or
+ *     delivery of the Materials, either expressly, by implication, inducement,
+ *     estoppel or otherwise. Any license under such intellectual property rights
+ *     must be expressed and approved by McAfee in writing.
+ *
+ */
+.mc-interactive-balloon{position:absolute;right:-50px;bottom:8px;box-shadow:rgba(0,0,0,.12) 0px 0px 10px;height:40px;width:40px;background:#1671ee;border-radius:20px;display:flex;justify-content:center;align-items:center}
+
+/*# sourceMappingURL=../sourceMap/chrome/css/interactive_balloon.css.map*/</style></template></div></body></html>

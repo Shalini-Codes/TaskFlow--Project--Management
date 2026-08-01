@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://shalini-codes.github.io/TaskFlow-%2DProject-%2DManagement/ -->
+<html lang="en" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Project Management Dashboard</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="TaskFlow - Lightweight production-grade project management board with Kanban drag and drop, task CRUD, and REST API integration.">
+
+  <!-- Google Fonts (Inter & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./dashboard_files/css2" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./dashboard_files/variables.css">
+  <link rel="stylesheet" href="./dashboard_files/theme.css">
+  <link rel="stylesheet" href="./dashboard_files/main.css">
+  <link rel="stylesheet" href="./dashboard_files/components.css">
+  <link rel="stylesheet" href="./dashboard_files/kanban.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar Root -->
+    <div id="sidebar-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#dashboard" class="brand-logo">
+            <div class="brand-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span>TaskFlow</span>
+          </a>
+        </div>
+
+        <nav class="sidebar-nav">
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#dashboard" class="nav-item active">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+              <span>Dashboard</span>
+            </a>
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#tasks" class="nav-item ">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+              <span>Tasks Board</span>
+            </a>
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#team" class="nav-item ">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+              <span>Team Directory</span>
+            </a>
+          
+            <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#profile" class="nav-item ">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <span>Settings &amp; Profile</span>
+            </a>
+          
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#login" class="nav-item" style="color: var(--accent-rose);">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <span>Log Out</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Main Workspace Area -->
+    <div class="main-wrapper">
+      <!-- Top Navbar Root -->
+      <div id="navbar-container">
+      <header class="navbar">
+        <div class="navbar-left">
+          <button class="btn-icon mobile-menu-btn" aria-label="Toggle Sidebar Menu">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <h1 class="page-title">Dashboard Overview</h1>
+        </div>
+
+        <div class="navbar-right">
+          <div class="nav-search">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="global-search-input" placeholder="Search tasks, descriptions..." aria-label="Search tasks">
+          </div>
+
+          <button class="btn-icon theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Toggle Dark/Light Mode">
+            
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+            
+          </button>
+
+          <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#profile" class="user-profile-pill" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); background: var(--bg-hover);">
+            <img src="./dashboard_files/photo-1494790108377-be9c29b29330" alt="Alex Morgan" class="avatar" style="width: 28px; height: 28px;">
+            <span style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary); display: var(--display-user-name, inline);">Alex Morgan</span>
+          </a>
+        </div>
+      </header>
+    </div>
+
+      <!-- Main Page View Portal -->
+      <main id="main-content">
+      <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+        <!-- Banner Header -->
+        <div class="card" style="background: linear-gradient(135deg, var(--primary-600), var(--accent-purple)); color: #fff; padding: 1.75rem; border: none; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem;">Project Status Overview</h2>
+            <p style="opacity: 0.9; font-size: var(--font-sm);">Tracking project velocity and upcoming deadlines</p>
+          </div>
+          <button id="dash-new-task-btn" class="btn" style="background: #ffffff; color: var(--primary-700); font-weight: 700;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+            <span>Create New Task</span>
+          </button>
+        </div>
+
+        <!-- Metric Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;">
+          <div class="card" style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: var(--radius-lg); background: var(--primary-100); color: var(--primary-600); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              📋
+            </div>
+            <div>
+              <div style="font-size: var(--font-xs); color: var(--text-secondary); font-weight: 600;">Total Tasks</div>
+              <div style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--text-primary);">5</div>
+            </div>
+          </div>
+
+          <div class="card" style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: var(--radius-lg); background: var(--status-in-progress-bg); color: var(--status-in-progress); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              ⚡
+            </div>
+            <div>
+              <div style="font-size: var(--font-xs); color: var(--text-secondary); font-weight: 600;">In Progress</div>
+              <div style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--text-primary);">2</div>
+            </div>
+          </div>
+
+          <div class="card" style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: var(--radius-lg); background: var(--status-done-bg); color: var(--status-done); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              ✅
+            </div>
+            <div>
+              <div style="font-size: var(--font-xs); color: var(--text-secondary); font-weight: 600;">Completed</div>
+              <div style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--text-primary);">2</div>
+            </div>
+          </div>
+
+          <div class="card" style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: var(--radius-lg); background: var(--priority-high-bg); color: var(--priority-high); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+              🚨
+            </div>
+            <div>
+              <div style="font-size: var(--font-xs); color: var(--text-secondary); font-weight: 600;">High Priority Alerts</div>
+              <div style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--text-primary);">1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completion Progress & Recent Activity Split -->
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; align-items: start;">
+          <!-- Completion Rate Card -->
+          <div class="card">
+            <h3 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Project Completion</h3>
+            <div style="text-align: center; margin: 1.5rem 0;">
+              <div style="font-family: var(--font-heading); font-size: 3rem; font-weight: 800; color: var(--primary-500);">40%</div>
+              <div style="font-size: var(--font-xs); color: var(--text-tertiary); margin-top: 0.2rem;">2 of 5 tasks resolved</div>
+            </div>
+            <div style="width: 100%; height: 10px; background: var(--bg-hover); border-radius: var(--radius-full); overflow: hidden;">
+              <div style="width: 40%; height: 100%; background: linear-gradient(90deg, var(--primary-500), var(--accent-emerald)); border-radius: var(--radius-full); transition: width 0.5s ease;"></div>
+            </div>
+          </div>
+
+          <!-- Recent Activity Stream -->
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+              <h3 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;">Recent Task Feed</h3>
+              <a href="https://shalini-codes.github.io/TaskFlow--Project--Management/#tasks" id="view-all-tasks-link" style="font-size: var(--font-xs); color: var(--primary-500); font-weight: 600;">View All Tasks →</a>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.875rem;">
+              
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <div class="avatar" style="width: 32px; height: 32px;">
+                        <img src="./dashboard_files/photo-1534528741775-53994a69daeb" alt="Elena Rostova" style="width:100%;height:100%;border-radius:50%;">
+                      </div>
+                      <div>
+                        <div style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary);">Mobile Sidebar Drawer Navigation</div>
+                        <div style="font-size: var(--font-xs); color: var(--text-tertiary);">Assigned to Elena Rostova • just now</div>
+                      </div>
+                    </div>
+                    <span class="badge badge-status-todo">todo</span>
+                  </div>
+                
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <div class="avatar" style="width: 32px; height: 32px;">
+                        <img src="./dashboard_files/photo-1494790108377-be9c29b29330" alt="Alex Morgan" style="width:100%;height:100%;border-radius:50%;">
+                      </div>
+                      <div>
+                        <div style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary);">Add Toast Notification Manager</div>
+                        <div style="font-size: var(--font-xs); color: var(--text-tertiary);">Assigned to Alex Morgan • just now</div>
+                      </div>
+                    </div>
+                    <span class="badge badge-status-in_progress">in progress</span>
+                  </div>
+                
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <div class="avatar" style="width: 32px; height: 32px;">
+                        <img src="./dashboard_files/photo-1517841905240-472988babdf9" alt="Sarah Chen" style="width:100%;height:100%;border-radius:50%;">
+                      </div>
+                      <div>
+                        <div style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary);">Implement Kanban Drag &amp; Drop</div>
+                        <div style="font-size: var(--font-xs); color: var(--text-tertiary);">Assigned to Sarah Chen • just now</div>
+                      </div>
+                    </div>
+                    <span class="badge badge-status-in_progress">in progress</span>
+                  </div>
+                
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <div class="avatar" style="width: 32px; height: 32px;">
+                        <img src="./dashboard_files/photo-1494790108377-be9c29b29330" alt="Alex Morgan" style="width:100%;height:100%;border-radius:50%;">
+                      </div>
+                      <div>
+                        <div style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary);">Architect REST API Service Layer</div>
+                        <div style="font-size: var(--font-xs); color: var(--text-tertiary);">Assigned to Alex Morgan • just now</div>
+                      </div>
+                    </div>
+                    <span class="badge badge-status-done">done</span>
+                  </div>
+                
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <div class="avatar" style="width: 32px; height: 32px;">
+                        <img src="./dashboard_files/photo-1539571696357-5a69c17a67c6" alt="Marcus Vance" style="width:100%;height:100%;border-radius:50%;">
+                      </div>
+                      <div>
+                        <div style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary);">Design Dark Theme Token System</div>
+                        <div style="font-size: var(--font-xs); color: var(--text-tertiary);">Assigned to Marcus Vance • 45m ago</div>
+                      </div>
+                    </div>
+                    <span class="badge badge-status-done">done</span>
+                  </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    </div>
+  </div>
+
+  <!-- Floating Portals -->
+  <div id="toast-container"></div>
+
+  <!-- Entry Script -->
+  <script type="module" src="./dashboard_files/app.js.download"></script>
+
+
+</body></html>
