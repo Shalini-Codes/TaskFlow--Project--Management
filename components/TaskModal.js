@@ -63,7 +63,7 @@ export class TaskModal {
               <textarea id="task-description" name="description" class="textarea" rows="3" placeholder="Provide additional details or subtasks...">${this.task?.description || ''}</textarea>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-grid-2">
               <div class="form-group">
                 <label class="form-label" for="task-status">Status</label>
                 <select id="task-status" name="status" class="select">
@@ -85,7 +85,7 @@ export class TaskModal {
               </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-grid-2">
               <div class="form-group">
                 <label class="form-label" for="task-assignee">Assignee</label>
                 <select id="task-assignee" name="assigneeId" class="select">

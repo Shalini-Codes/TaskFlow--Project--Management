@@ -55,7 +55,7 @@ export class TeamView {
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+        <div class="team-grid">
           ${this.users.map((user) => {
             const activeCount = this.getAssignedTasksCount(user.id);
             return `

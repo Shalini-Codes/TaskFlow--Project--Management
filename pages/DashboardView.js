@@ -117,7 +117,7 @@ export class DashboardView {
         </div>
 
         <!-- Completion Progress & Recent Activity Split -->
-        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; align-items: start;">
+        <div class="dashboard-split-grid">
           <!-- Completion Rate Card -->
           <div class="card">
             <h3 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Project Completion</h3>

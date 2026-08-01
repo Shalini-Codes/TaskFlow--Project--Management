@@ -218,6 +218,51 @@ button {
   pointer-events: none;
 }
 
+/* Sidebar Mobile Overlay Backdrop */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 45;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.sidebar-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dashboard Grid Split Layout */
+.dashboard-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .dashboard-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Team Directory Grid Layout */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 400px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
 /* Main Content Container */
 #main-content {
   flex: 1;
@@ -227,7 +272,7 @@ button {
   margin: 0 auto;
 }
 
-/* Responsive Collapsed Sidebar & Mobile Drawer */
+/* Responsive Breakpoints & Viewport Rules */
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(-100%);
@@ -244,14 +289,42 @@ button {
   }
 }
 
+@media (max-width: 768px) {
+  #main-content {
+    padding: 1.25rem;
+  }
+  .navbar {
+    padding: 0 1.25rem;
+  }
+}
+
 @media (max-width: 640px) {
   #main-content {
-    padding: 1rem;
+    padding: 0.875rem;
   }
   .nav-search {
     display: none;
   }
   .navbar {
-    padding: 0 1rem;
+    padding: 0 0.875rem;
+  }
+  .page-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1rem;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .user-profile-pill span {
+    display: none;
+  }
+  .user-profile-pill {
+    padding: 0.2rem !important;
   }
 }

@@ -26,17 +26,21 @@ export class Sidebar {
 
   toggleMobile() {
     const sidebarEl = document.querySelector('.sidebar');
+    const backdropEl = document.querySelector('.sidebar-backdrop');
     if (sidebarEl) {
       this.isOpen = !this.isOpen;
       sidebarEl.classList.toggle('open', this.isOpen);
+      if (backdropEl) backdropEl.classList.toggle('active', this.isOpen);
     }
   }
 
   closeMobile() {
     const sidebarEl = document.querySelector('.sidebar');
+    const backdropEl = document.querySelector('.sidebar-backdrop');
     if (sidebarEl && this.isOpen) {
       this.isOpen = false;
       sidebarEl.classList.remove('open');
+      if (backdropEl) backdropEl.classList.remove('active');
     }
   }
 
@@ -65,6 +69,7 @@ export class Sidebar {
     ];
 
     return `
+      <div class="sidebar-backdrop"></div>
       <aside class="sidebar">
         <div class="sidebar-header">
           <a href="#dashboard" class="brand-logo">
@@ -98,6 +103,12 @@ export class Sidebar {
 
   bindEvents(container) {
     const navLinks = container.querySelectorAll('.sidebar .nav-item');
+    const backdropEl = container.querySelector('.sidebar-backdrop');
+
+    if (backdropEl) {
+      backdropEl.addEventListener('click', () => this.closeMobile());
+    }
+
     navLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
         const route = link.getAttribute('href').replace('#', '');

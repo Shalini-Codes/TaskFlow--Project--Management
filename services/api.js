@@ -37,7 +37,6 @@ class ApiService {
 
         return await response.json();
       } catch (err) {
-        console.warn(`API Request failed for ${this.baseUrl}${endpoint}, using local fallback:`, err.message);
         // Fallthrough to local fallback handling below
       }
     }

@@ -105,7 +105,6 @@ export const storage = {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
     } catch (e) {
-      console.warn(`Error reading localStorage key "${key}":`, e);
       return defaultValue;
     }
   },
@@ -113,7 +112,7 @@ export const storage = {
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      console.warn(`Error setting localStorage key "${key}":`, e);
+      // Ignore storage write errors (e.g. private browsing storage quota)
     }
   },
   remove(key) {
