@@ -62,9 +62,9 @@ export class ProfileView {
             <div class="form-group">
               <label class="form-label" for="mock-api-url">MockAPI.io Base Endpoint URL</label>
               <div style="font-size: var(--font-xs); color: var(--text-tertiary); margin-bottom: 0.4rem;">
-                Enter your custom MockAPI project endpoint (e.g. <code>https://64a123.mockapi.io/api/v1</code>). Leave blank to use local fallback storage.
+                Enter your custom MockAPI project endpoint (e.g. <code>https://66xxxx.mockapi.io/api/v1</code>) for Task CRUD management.
               </div>
-              <input type="url" id="mock-api-url" name="apiUrl" class="input" placeholder="https://64a123.mockapi.io/api/v1" value="${currentApiUrl}">
+              <input type="url" id="mock-api-url" name="apiUrl" class="input" placeholder="https://66xxxx.mockapi.io/api/v1" value="${currentApiUrl}">
             </div>
             <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Save API Endpoint</button>
           </form>
@@ -88,8 +88,9 @@ export class ProfileView {
         e.preventDefault();
         const url = apiForm.apiUrl.value;
         api.setBaseUrl(url);
-        Toast.success(url ? 'MockAPI endpoint updated!' : 'Switched to local offline storage');
+        Toast.success(url ? 'MockAPI endpoint updated successfully!' : 'Cleared MockAPI URL');
       });
     }
   }
+
 }

@@ -17,5 +17,7 @@ export const config = {
     storageBucket: getEnvVar('FIREBASE_STORAGE_BUCKET'),
     messagingSenderId: getEnvVar('FIREBASE_MESSAGING_SENDER_ID'),
     appId: getEnvVar('FIREBASE_APP_ID')
-  }
+  },
+  mockApiBaseUrl: getEnvVar('MOCK_API_BASE_URL')
 };
+
