@@ -5,6 +5,7 @@
 import { storage, STORAGE_KEYS } from '../utils/storage.js';
 import { api } from '../services/api.js';
 import { Toast } from '../components/Toast.js';
+import { authService } from '../services/authService.js';
 
 export class ProfileView {
   constructor({ onThemeToggle }) {
@@ -12,13 +13,13 @@ export class ProfileView {
   }
 
   getCurrentUser() {
-    return storage.get(STORAGE_KEYS.CURRENT_USER, {
+    return authService.getCurrentUser() || {
       name: 'Alex Morgan',
       email: 'alex.morgan@taskflow.io',
       department: 'Engineering',
       role: 'Lead Developer',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150'
-    });
+    };
   }
 
   render() {

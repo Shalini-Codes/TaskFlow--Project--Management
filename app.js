@@ -3,6 +3,7 @@
    ========================================================================== */
 
 import { storage, STORAGE_KEYS } from './utils/storage.js';
+import { authService } from './services/authService.js';
 import { Sidebar } from './components/Sidebar.js';
 import { Navbar } from './components/Navbar.js';
 import { LoginView } from './pages/LoginView.js';
@@ -19,12 +20,19 @@ class TaskFlowApp {
     this.currentPageView = null;
 
     this.initTheme();
+    this.initAuthListener();
     this.initRouter();
   }
 
   initTheme() {
     const savedTheme = storage.get(STORAGE_KEYS.THEME, 'light');
     document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+
+  initAuthListener() {
+    authService.onAuthStateChanged((user) => {
+      this.handleRoute();
+    });
   }
 
   toggleTheme() {
@@ -49,11 +57,14 @@ class TaskFlowApp {
 
   async handleRoute() {
     this.currentRoute = this.getRouteFromHash();
-    const currentUser = storage.get(STORAGE_KEYS.CURRENT_USER, null);
+    const currentUser = authService.getCurrentUser();
 
-    // If user lands on login view, clear session and hide sidebar and navbar
+    // If user lands on login view and is authenticated, send to dashboard
     if (this.currentRoute === 'login') {
-      storage.remove(STORAGE_KEYS.CURRENT_USER);
+      if (currentUser && currentUser.uid) {
+        window.location.hash = 'dashboard';
+        return;
+      }
       this.navbar = null;
       document.getElementById('sidebar-container').innerHTML = '';
       document.getElementById('navbar-container').innerHTML = '';
@@ -62,7 +73,7 @@ class TaskFlowApp {
       return;
     }
 
-    // If no active session, redirect to login page
+    // Protect Dashboard and workspace routes: If no active session, redirect to login page
     if (!currentUser) {
       window.location.hash = 'login';
       return;

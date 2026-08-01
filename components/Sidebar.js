@@ -3,6 +3,7 @@
    ========================================================================== */
 
 import { storage, STORAGE_KEYS } from '../utils/storage.js';
+import { authService } from '../services/authService.js';
 
 export class Sidebar {
   constructor({ activeRoute = 'dashboard', onNavigate }) {
@@ -110,10 +111,10 @@ export class Sidebar {
     }
 
     navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', async (e) => {
         const route = link.getAttribute('href').replace('#', '');
         if (route === 'login') {
-          storage.remove(STORAGE_KEYS.CURRENT_USER);
+          await authService.logout();
         } else {
           this.setActiveRoute(route);
           if (this.onNavigate) this.onNavigate(route);

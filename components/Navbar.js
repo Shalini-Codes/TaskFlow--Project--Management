@@ -3,6 +3,7 @@
    ========================================================================== */
 
 import { storage, STORAGE_KEYS } from '../utils/storage.js';
+import { authService } from '../services/authService.js';
 
 export class Navbar {
   constructor({ onThemeToggle, onMobileSidebarToggle, onSearch }) {
@@ -12,10 +13,10 @@ export class Navbar {
   }
 
   getCurrentUser() {
-    return storage.get(STORAGE_KEYS.CURRENT_USER, {
+    return authService.getCurrentUser() || {
       name: 'Alex Morgan',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150'
-    });
+    };
   }
 
   render(title = 'Dashboard') {
