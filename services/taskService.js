@@ -31,23 +31,27 @@ export const taskService = {
       const querySnapshot = await getDocs(q);
 
       querySnapshot.forEach((docSnap) => {
+        const data = docSnap.data();
         tasks.push({
           id: docSnap.id,
-          ...docSnap.data()
+          ...data,
+          assigneeId: data.assigneeId || data.assignee || 'u1'
         });
       });
 
       // Seed initial tasks in Firestore if user is logging in for the first time
-      if (tasks.length === 0 && (!currentUser || currentUser.uid)) {
+      if (tasks.length === 0 && currentUser && currentUser.uid) {
         const seedTasks = INITIAL_TASKS.map((t) => ({
           title: t.title,
           description: t.description || '',
           status: t.status || 'todo',
           priority: t.priority || 'medium',
+          assignee: t.assigneeId || 'u1',
           assigneeId: t.assigneeId || 'u1',
           dueDate: t.dueDate || new Date().toISOString().split('T')[0],
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
+          createdBy: userId,
           userId: userId
         }));
 
@@ -91,7 +95,8 @@ export const taskService = {
       const docRef = doc(db, 'tasks', id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        return { id: docSnap.id, ...docSnap.data() };
+        const data = docSnap.data();
+        return { id: docSnap.id, ...data, assigneeId: data.assigneeId || data.assignee || 'u1' };
       }
     } catch (err) {
       console.warn('Firestore getTaskById error:', err);
@@ -111,10 +116,12 @@ export const taskService = {
       description: taskData.description || '',
       status: taskData.status || 'todo',
       priority: taskData.priority || 'medium',
-      assigneeId: taskData.assigneeId || 'u1',
+      assignee: taskData.assigneeId || taskData.assignee || 'u1',
+      assigneeId: taskData.assigneeId || taskData.assignee || 'u1',
       dueDate: taskData.dueDate || new Date().toISOString().split('T')[0],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      createdBy: userId,
       userId: userId
     };
 
@@ -139,6 +146,11 @@ export const taskService = {
       ...updateData,
       updatedAt: new Date().toISOString()
     };
+
+    if (updateData.assigneeId || updateData.assignee) {
+      payload.assignee = updateData.assigneeId || updateData.assignee;
+      payload.assigneeId = updateData.assigneeId || updateData.assignee;
+    }
 
     try {
       const docRef = doc(db, 'tasks', id);
