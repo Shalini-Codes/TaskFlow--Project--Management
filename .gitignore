@@ -1,0 +1,16 @@
+# Dependency & OS files
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Environment Variables & Secrets (Ignored by Git)
+.env
+.env.local
+.env.*
+!.env.example
+
+# Client Runtime Environment Files (Ignored by Git)
+env.js
+env.local.js
+env.*.js
+!env.example.js

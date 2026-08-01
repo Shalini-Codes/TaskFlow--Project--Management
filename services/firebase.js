@@ -26,15 +26,10 @@ import {
   serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// Firebase web app configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyC_vvc0NMncu_Zv6x5xqGR9_DiOrUn2GTk",
-  authDomain: "taskflow-f8368.firebaseapp.com",
-  projectId: "taskflow-f8368",
-  storageBucket: "taskflow-f8368.firebasestorage.app",
-  messagingSenderId: "17161722871",
-  appId: "1:17161722871:web:53c12a57aea15e4ff16cf2"
-};
+import { config } from "./config.js";
+
+// Firebase web app configuration dynamically loaded from environment
+const firebaseConfig = config.firebase;
 
 // Initialize Firebase App
 const app = initializeApp(firebaseConfig);
