@@ -90,11 +90,6 @@ TaskFlow/
 │   ├── TasksView.js            # Tasks Kanban & List view workspace
 │   ├── TeamView.js             # Team member workload directory
 │   └── ProfileView.js          # Profile & endpoint settings page
-└── screenshots/                # Application preview screenshots
-    ├── dashboard.png
-    ├── tasks-board.png
-    ├── team-directory.png
-    └── dark-mode.png
 ```
 
 ---
@@ -153,19 +148,7 @@ TaskFlow is optimized for zero-configuration deployment on **GitHub Pages**:
 2. Navigate to your repository on GitHub ➔ **Settings** ➔ **Pages**.
 3. Under **Build and deployment** ➔ **Source**, select **Deploy from a branch**.
 4. Choose the `main` branch and `/ (root)` folder, then click **Save**.
-5. Your app will be live at `https://<your-username>.github.io/<repository-name>/`.
-
----
-
-## 📸 Screenshots
-
-| Dashboard Overview | Kanban Workspace |
-|:---:|:---:|
-| ![Dashboard Overview](screenshots/dashboard.png) | ![Kanban Workspace](screenshots/tasks-board.png) |
-
-| Team Directory | Dark Mode Theme |
-|:---:|:---:|
-| ![Team Directory](screenshots/team-directory.png) | ![Dark Mode Theme](screenshots/dark-mode.png) |
+5. Live Demo: **[https://shalini-codes.github.io/TaskFlow--Project--Management/](https://shalini-codes.github.io/TaskFlow--Project--Management/)**
 
 ---
 
