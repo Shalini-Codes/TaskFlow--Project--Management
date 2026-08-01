@@ -113,11 +113,11 @@ npx http-server -p 8080
 
 | Dashboard Overview | Kanban Workspace |
 |:---:|:---:|
-| ![Dashboard Placeholder](https://via.placeholder.com/600x350/1e293b/ffffff?text=TaskFlow+Dashboard+Overview) | ![Kanban Board Placeholder](https://via.placeholder.com/600x350/1e293b/ffffff?text=TaskFlow+Kanban+Board) |
+| ![Dashboard Overview](screenshots/dashboard.png) | ![Kanban Board](screenshots/tasks-board.png) |
 
 | Team Directory | Dark Mode Theme |
 |:---:|:---:|
-| ![Team Directory Placeholder](https://via.placeholder.com/600x350/1e293b/ffffff?text=TaskFlow+Team+Directory) | ![Dark Mode Placeholder](https://via.placeholder.com/600x350/0f172a/ffffff?text=TaskFlow+Dark+Mode) |
+| ![Team Directory](screenshots/team-directory.png) | ![Dark Mode](screenshots/dark-mode.png) |
 
 ---
 
