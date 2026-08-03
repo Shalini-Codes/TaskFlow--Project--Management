@@ -4,6 +4,13 @@
 
 import { formatDate, isOverdue } from '../utils/dateFormatter.js';
 
+function getInitials(name) {
+  if (!name) return '?';
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+}
+
 export class KanbanBoard {
   constructor({ users = [], onTaskMove, onEditTask, onDeleteTask }) {
     this.users = users;
@@ -25,6 +32,8 @@ export class KanbanBoard {
   renderTaskCard(task) {
     const user = this.getUser(task.assigneeId);
     const overdue = isOverdue(task.dueDate, task.status);
+    const initials = getInitials(user.name);
+    const avatarUrl = (user.avatar && user.avatar.trim() && !user.avatar.includes('ui-avatars.com')) ? user.avatar.trim() : '';
 
     return `
       <div class="task-card" draggable="true" data-id="${task.id}" id="card-${task.id}">
@@ -55,15 +64,40 @@ export class KanbanBoard {
             <span>${overdue ? 'Overdue: ' : ''}${formatDate(task.dueDate)}</span>
           </div>
 
-          <div class="avatar" title="Assigned to ${user.name}">
-            ${user.avatar ? `<img src="${user.avatar}" alt="${user.name}" style="width:100%;height:100%;border-radius:50%;">` : user.name.charAt(0)}
+          <div class="avatar" title="Assigned to ${user.name}" style="position: relative; overflow: hidden; background: var(--primary-100); color: var(--primary-700); font-weight: 700;">
+            ${avatarUrl ? `
+              <img src="${avatarUrl}" alt="${user.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:var(--font-xs);">${initials}</span>
+            ` : `
+              <span style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:var(--font-xs);">${initials}</span>
+            `}
           </div>
         </div>
       </div>
     `;
   }
 
+  renderEmptyState() {
+    return `
+      <div class="card empty-workspace-card" style="text-align: center; padding: 4rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem;">
+        <div style="width: 4.5rem; height: 4.5rem; border-radius: 50%; background: var(--primary-100); color: var(--primary-600); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+          ✨
+        </div>
+        <div style="max-width: 440px;">
+          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">No tasks in your workspace</h2>
+          <p style="font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.6;">Your workspace is currently empty. Get started by creating your first task using the button below.</p>
+        </div>
+        <button id="empty-state-create-task-btn" class="btn btn-primary" style="padding: 0.75rem 1.75rem; font-size: var(--font-base); font-weight: 700;">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+          <span>Create Task</span>
+        </button>
+      </div>
+    `;
+  }
+
   renderKanbanView(tasks) {
+    if (tasks.length === 0) return this.renderEmptyState();
+
     const columns = [
       { id: 'todo', title: 'To Do', icon: '📝' },
       { id: 'in_progress', title: 'In Progress', icon: '⚡' },
@@ -98,13 +132,7 @@ export class KanbanBoard {
   }
 
   renderListView(tasks) {
-    if (tasks.length === 0) {
-      return `
-        <div class="card" style="text-align: center; padding: 3rem 1rem;">
-          <p style="color: var(--text-secondary); font-weight: 500;">No tasks found matching your filters.</p>
-        </div>
-      `;
-    }
+    if (tasks.length === 0) return this.renderEmptyState();
 
     return `
       <div class="task-table-wrapper">
@@ -123,6 +151,9 @@ export class KanbanBoard {
             ${tasks.map((task) => {
               const user = this.getUser(task.assigneeId);
               const overdue = isOverdue(task.dueDate, task.status);
+              const initials = getInitials(user.name);
+              const avatarUrl = (user.avatar && user.avatar.trim() && !user.avatar.includes('ui-avatars.com')) ? user.avatar.trim() : '';
+
               return `
                 <tr>
                   <td>
@@ -133,8 +164,13 @@ export class KanbanBoard {
                   <td><span class="badge badge-priority-${task.priority}">${task.priority}</span></td>
                   <td>
                     <div style="display: flex; align-items: center; gap: 0.5rem;">
-                      <div class="avatar" style="width: 24px; height: 24px;">
-                        ${user.avatar ? `<img src="${user.avatar}" alt="${user.name}" style="width:100%;height:100%;border-radius:50%;">` : user.name.charAt(0)}
+                      <div class="avatar" style="width: 24px; height: 24px; position: relative; overflow: hidden; background: var(--primary-100); color: var(--primary-700); font-weight: 700;">
+                        ${avatarUrl ? `
+                          <img src="${avatarUrl}" alt="${user.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                          <span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:var(--font-xs);">${initials}</span>
+                        ` : `
+                          <span style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:var(--font-xs);">${initials}</span>
+                        `}
                       </div>
                       <span style="font-size: var(--font-xs);">${user.name}</span>
                     </div>
@@ -164,6 +200,13 @@ export class KanbanBoard {
   }
 
   bindEvents(container) {
+    const emptyStateBtn = container.querySelector('#empty-state-create-task-btn');
+    if (emptyStateBtn) {
+      emptyStateBtn.addEventListener('click', () => {
+        if (this.onEditTask) this.onEditTask(null);
+      });
+    }
+
     // Action Buttons (Edit & Delete)
     container.querySelectorAll('.edit-task-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {

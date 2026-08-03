@@ -51,11 +51,37 @@ export class DashboardView {
     }
 
     const totalTasks = this.tasks.length;
+
+    if (totalTasks === 0) {
+      return `
+        <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+          <div class="card" style="background: linear-gradient(135deg, var(--primary-600), var(--accent-purple)); color: #fff; padding: 1.75rem; border: none; border-radius: var(--radius-xl);">
+            <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem;">Welcome to TaskFlow Workspace</h2>
+            <p style="opacity: 0.9; font-size: var(--font-sm);">Your project dashboard is ready. Start building your project timeline.</p>
+          </div>
+
+          <div class="card empty-workspace-card" style="text-align: center; padding: 4.5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem; background: var(--bg-surface); border-radius: var(--radius-xl);">
+            <div style="width: 5rem; height: 5rem; border-radius: 50%; background: var(--primary-100); color: var(--primary-600); display: flex; align-items: center; justify-content: center; font-size: 2.25rem;">
+              🚀
+            </div>
+            <div style="max-width: 440px;">
+              <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">No tasks found</h2>
+              <p style="font-size: var(--font-sm); color: var(--text-secondary); line-height: 1.6;">You don't have any tasks in your workspace yet. Click the button below to create your first task!</p>
+            </div>
+            <button id="dash-empty-create-btn" class="btn btn-primary" style="padding: 0.8rem 1.8rem; font-size: var(--font-base); font-weight: 700;">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+              <span>Create Task</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
     const todoTasks = this.tasks.filter((t) => t.status === 'todo').length;
     const inProgressTasks = this.tasks.filter((t) => t.status === 'in_progress').length;
     const doneTasks = this.tasks.filter((t) => t.status === 'done').length;
     const highPriorityTasks = this.tasks.filter((t) => t.priority === 'high' && t.status !== 'done').length;
-    const completionRate = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
+    const completionRate = Math.round((doneTasks / totalTasks) * 100);
 
     const recentTasks = [...this.tasks].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
 
@@ -140,11 +166,25 @@ export class DashboardView {
             <div style="display: flex; flex-direction: column; gap: 0.875rem;">
               ${recentTasks.map((t) => {
                 const user = this.getUser(t.assigneeId);
+                const getInitials = (name) => {
+                  if (!name) return '?';
+                  const parts = name.trim().split(/\s+/);
+                  if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+                  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+                };
+                const initials = getInitials(user.name);
+                const avatarUrl = (user.avatar && user.avatar.trim() && !user.avatar.includes('ui-avatars.com')) ? user.avatar.trim() : '';
+
                 return `
                   <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-hover); border-radius: var(--radius-md);">
                     <div style="display: flex; align-items: center; gap: 0.75rem;">
-                      <div class="avatar" style="width: 32px; height: 32px;">
-                        ${user.avatar ? `<img src="${user.avatar}" alt="${user.name}" style="width:100%;height:100%;border-radius:50%;">` : user.name.charAt(0)}
+                      <div class="avatar" style="width: 32px; height: 32px; position: relative; overflow: hidden; background: var(--primary-100); color: var(--primary-700); font-weight: 700;">
+                        ${avatarUrl ? `
+                          <img src="${avatarUrl}" alt="${user.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                          <span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:var(--font-xs);">${initials}</span>
+                        ` : `
+                          <span style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:var(--font-xs);">${initials}</span>
+                        `}
                       </div>
                       <div>
                         <div style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary);">${t.title}</div>
@@ -164,10 +204,15 @@ export class DashboardView {
 
   bindEvents(container) {
     const newTaskBtn = container.querySelector('#dash-new-task-btn');
+    const emptyCreateBtn = container.querySelector('#dash-empty-create-btn');
     const viewAllLink = container.querySelector('#view-all-tasks-link');
 
     if (newTaskBtn) {
       newTaskBtn.addEventListener('click', () => this.onOpenTaskModal());
+    }
+
+    if (emptyCreateBtn) {
+      emptyCreateBtn.addEventListener('click', () => this.onOpenTaskModal());
     }
 
     if (viewAllLink) {

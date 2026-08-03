@@ -140,6 +140,37 @@ button {
   border-top: 1px solid var(--border-subtle);
 }
 
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebar.collapsed .brand-logo span,
+.sidebar.collapsed .sidebar-nav span,
+.sidebar.collapsed .sidebar-footer span {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-header {
+  padding: 0 0.75rem;
+  justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-nav {
+  padding: 1.25rem 0.5rem;
+  align-items: center;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 0.65rem;
+}
+
+.sidebar.collapsed .sidebar-footer {
+  padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
 /* Main Workspace Wrapper */
 .main-wrapper {
   flex: 1;
@@ -148,6 +179,10 @@ button {
   flex-direction: column;
   min-height: 100vh;
   transition: margin-left var(--transition-normal);
+}
+
+.main-wrapper.collapsed {
+  margin-left: var(--sidebar-collapsed-width);
 }
 
 /* Header / Navbar */

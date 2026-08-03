@@ -8,7 +8,8 @@ const STORAGE_KEYS = {
   USERS: 'taskflow_users',
   VIEW_MODE: 'taskflow_view_mode',
   MOCK_API_URL: 'taskflow_api_url',
-  CURRENT_USER: 'taskflow_current_user'
+  CURRENT_USER: 'taskflow_current_user',
+  SIDEBAR_COLLAPSED: 'taskflow_sidebar_collapsed'
 };
 
 export const INITIAL_USERS = [
@@ -119,8 +120,19 @@ export const storage = {
     localStorage.removeItem(key);
   },
   initSeedData() {
-    if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+    let existingUsers = this.get(STORAGE_KEYS.USERS, null);
+    if (!existingUsers) {
       this.set(STORAGE_KEYS.USERS, INITIAL_USERS);
+    } else {
+      // Restore photo URLs for seed users if overridden by stale ui-avatars URLs
+      const updatedUsers = existingUsers.map((u) => {
+        const initial = INITIAL_USERS.find((init) => init.id === u.id);
+        if (initial && (!u.avatar || u.avatar.includes('ui-avatars.com'))) {
+          return { ...u, avatar: initial.avatar };
+        }
+        return u;
+      });
+      this.set(STORAGE_KEYS.USERS, updatedUsers);
     }
     if (!localStorage.getItem(STORAGE_KEYS.TASKS)) {
       this.set(STORAGE_KEYS.TASKS, INITIAL_TASKS);

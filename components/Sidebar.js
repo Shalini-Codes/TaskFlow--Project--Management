@@ -10,6 +10,7 @@ export class Sidebar {
     this.activeRoute = activeRoute;
     this.onNavigate = onNavigate;
     this.isOpen = false;
+    this.isCollapsed = storage.get(STORAGE_KEYS.SIDEBAR_COLLAPSED, false);
   }
 
   setActiveRoute(route) {
@@ -23,6 +24,25 @@ export class Sidebar {
         item.classList.remove('active');
       }
     });
+  }
+
+  toggle() {
+    if (window.innerWidth <= 1024) {
+      this.toggleMobile();
+    } else {
+      this.toggleDesktop();
+    }
+  }
+
+  toggleDesktop() {
+    this.isCollapsed = !this.isCollapsed;
+    storage.set(STORAGE_KEYS.SIDEBAR_COLLAPSED, this.isCollapsed);
+
+    const sidebarEl = document.querySelector('.sidebar');
+    const wrapperEl = document.querySelector('.main-wrapper');
+
+    if (sidebarEl) sidebarEl.classList.toggle('collapsed', this.isCollapsed);
+    if (wrapperEl) wrapperEl.classList.toggle('collapsed', this.isCollapsed);
   }
 
   toggleMobile() {
@@ -46,6 +66,16 @@ export class Sidebar {
   }
 
   render() {
+    // Sync main wrapper margin class on desktop load
+    const wrapperEl = document.querySelector('.main-wrapper');
+    if (wrapperEl) {
+      if (this.isCollapsed && window.innerWidth > 1024) {
+        wrapperEl.classList.add('collapsed');
+      } else {
+        wrapperEl.classList.remove('collapsed');
+      }
+    }
+
     const navItems = [
       {
         id: 'dashboard',
@@ -71,9 +101,9 @@ export class Sidebar {
 
     return `
       <div class="sidebar-backdrop"></div>
-      <aside class="sidebar">
+      <aside class="sidebar ${this.isCollapsed ? 'collapsed' : ''}">
         <div class="sidebar-header">
-          <a href="#dashboard" class="brand-logo">
+          <a href="#dashboard" class="brand-logo" title="TaskFlow">
             <div class="brand-icon">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -85,7 +115,7 @@ export class Sidebar {
 
         <nav class="sidebar-nav">
           ${navItems.map((item) => `
-            <a href="#${item.id}" class="nav-item ${this.activeRoute === item.id ? 'active' : ''}">
+            <a href="#${item.id}" class="nav-item ${this.activeRoute === item.id ? 'active' : ''}" title="${item.label}">
               ${item.icon}
               <span>${item.label}</span>
             </a>
@@ -93,7 +123,7 @@ export class Sidebar {
         </nav>
 
         <div class="sidebar-footer">
-          <a href="#login" class="nav-item" style="color: var(--accent-rose);">
+          <a href="#login" class="nav-item" style="color: var(--accent-rose);" title="Log Out">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
             <span>Log Out</span>
           </a>

@@ -27,8 +27,19 @@ export const taskService = {
     }));
 
 
+    // User Task Isolation: Scope tasks for authenticated users with a specific uid
+    const currentUser = authService.getCurrentUser();
+    const currentUserId = currentUser?.uid || currentUser?.id;
+    const isDemoUser = !currentUser?.uid && (currentUserId === 'u1' || currentUserId === 'u2' || currentUserId === 'u3' || currentUserId === 'u4');
+
+    const userTasks = tasks.filter(task => {
+      if (isDemoUser) return true; // Demo accounts see pre-seeded workspace tasks
+      if (currentUser?.uid) return task.userId === currentUser.uid;
+      return true;
+    });
+
     // Apply client-side search and status/priority filters
-    return tasks.filter((task) => {
+    return userTasks.filter((task) => {
       if (filters.search) {
         const qStr = filters.search.toLowerCase();
         const matchesTitle = (task.title || '').toLowerCase().includes(qStr);

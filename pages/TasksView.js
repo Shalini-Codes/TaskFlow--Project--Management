@@ -58,12 +58,10 @@ export class TasksView {
   }
 
   async handleOpenTaskModal(task = null) {
-    if (!this.users || this.users.length === 0) {
-      try {
-        this.users = await userService.getUsers();
-      } catch (err) {
-        console.error('Failed to load users for task modal:', err);
-      }
+    try {
+      this.users = await userService.getUsers();
+    } catch (err) {
+      console.error('Failed to load users for task modal:', err);
     }
 
     this.taskModal = new TaskModal({
@@ -225,3 +223,4 @@ export class TasksView {
     debouncedSearch();
   }
 }
+

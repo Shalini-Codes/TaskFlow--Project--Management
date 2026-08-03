@@ -6,16 +6,16 @@ import { storage, STORAGE_KEYS } from '../utils/storage.js';
 import { authService } from '../services/authService.js';
 
 export class Navbar {
-  constructor({ onThemeToggle, onMobileSidebarToggle, onSearch }) {
+  constructor({ onThemeToggle, onSidebarToggle, onMobileSidebarToggle, onSearch }) {
     this.onThemeToggle = onThemeToggle;
-    this.onMobileSidebarToggle = onMobileSidebarToggle;
+    this.onSidebarToggle = onSidebarToggle || onMobileSidebarToggle;
     this.onSearch = onSearch;
   }
 
   getCurrentUser() {
     return authService.getCurrentUser() || {
       name: 'Alex Morgan',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150'
+      avatar: 'https://ui-avatars.com/api/?name=Alex+Morgan&background=6366f1&color=fff'
     };
   }
 
@@ -23,11 +23,13 @@ export class Navbar {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const isDark = currentTheme === 'dark';
     const currentUser = this.getCurrentUser();
+    const initials = (currentUser.name || 'U').split(/\s+/).map(p => p.charAt(0)).join('').substring(0, 2).toUpperCase();
+    const avatarUrl = (currentUser.avatar && currentUser.avatar.trim() && !currentUser.avatar.includes('ui-avatars.com')) ? currentUser.avatar.trim() : '';
 
     return `
       <header class="navbar">
         <div class="navbar-left">
-          <button class="btn-icon mobile-menu-btn" aria-label="Toggle Sidebar Menu">
+          <button class="btn-icon mobile-menu-btn" aria-label="Toggle Sidebar Menu" title="Toggle Side Panel">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -56,7 +58,14 @@ export class Navbar {
           </button>
 
           <a href="#profile" class="user-profile-pill" style="display: flex; align-items: center; gap: 0.6rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); background: var(--bg-hover);">
-            <img src="${currentUser.avatar}" alt="${currentUser.name}" class="avatar" style="width: 28px; height: 28px;">
+            <div class="avatar" style="width: 28px; height: 28px; border-radius: 50%; position: relative; overflow: hidden; background: var(--primary-100); color: var(--primary-700); font-weight: 700; display: flex; align-items: center; justify-content: center;">
+              ${avatarUrl ? `
+                <img src="${avatarUrl}" alt="${currentUser.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: absolute; inset: 0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <span style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 0.75rem;">${initials}</span>
+              ` : `
+                <span style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 0.75rem;">${initials}</span>
+              `}
+            </div>
             <span style="font-size: var(--font-sm); font-weight: 600; color: var(--text-primary); display: var(--display-user-name, inline);">${currentUser.name}</span>
           </a>
         </div>
@@ -74,7 +83,9 @@ export class Navbar {
     }
 
     if (menuBtn) {
-      menuBtn.addEventListener('click', () => this.onMobileSidebarToggle());
+      menuBtn.addEventListener('click', () => {
+        if (this.onSidebarToggle) this.onSidebarToggle();
+      });
     }
 
     if (searchInput) {

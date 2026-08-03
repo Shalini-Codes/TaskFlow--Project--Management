@@ -68,6 +68,55 @@ class ApiService {
     }
     return INITIAL_USERS;
   }
+
+  async addUser(userData) {
+    const users = storage.get(STORAGE_KEYS.USERS, INITIAL_USERS);
+    const newUser = {
+      id: userData.id || `u_${Date.now()}`,
+      name: userData.name || 'New Member',
+      email: userData.email || '',
+      role: userData.role || 'Team Member',
+      department: userData.department || 'Engineering',
+      avatar: (userData.avatar && userData.avatar.trim()) ? userData.avatar.trim() : ''
+    };
+
+    users.push(newUser);
+    storage.set(STORAGE_KEYS.USERS, users);
+
+    const activeBaseUrl = this.getBaseUrl();
+    if (activeBaseUrl) {
+      try {
+        await fetch(`${activeBaseUrl}/users`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newUser)
+        });
+      } catch (err) {
+        console.warn('Failed to sync new user to MockAPI server, saved locally:', err);
+      }
+    }
+
+    return newUser;
+  }
+
+  async deleteUser(id) {
+    const users = storage.get(STORAGE_KEYS.USERS, INITIAL_USERS);
+    const updatedUsers = users.filter((u) => u.id !== id);
+    storage.set(STORAGE_KEYS.USERS, updatedUsers);
+
+    const activeBaseUrl = this.getBaseUrl();
+    if (activeBaseUrl) {
+      try {
+        await fetch(`${activeBaseUrl}/users/${id}`, {
+          method: 'DELETE'
+        });
+      } catch (err) {
+        console.warn('Failed to sync user deletion to MockAPI server, deleted locally:', err);
+      }
+    }
+
+    return { success: true, id };
+  }
 }
 
 export const api = new ApiService();

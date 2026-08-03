@@ -11,5 +11,13 @@ export const userService = {
 
   async getUserById(id) {
     return await api.request(`/users/${id}`);
+  },
+
+  async addUser(userData) {
+    return await api.addUser(userData);
+  },
+
+  async deleteUser(id) {
+    return await api.deleteUser(id);
   }
 };

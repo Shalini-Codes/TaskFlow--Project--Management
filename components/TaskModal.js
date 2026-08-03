@@ -3,6 +3,7 @@
    ========================================================================== */
 
 import { validateTaskForm } from '../utils/validators.js';
+import { TeamMemberModal } from './TeamMemberModal.js';
 
 export class TaskModal {
   constructor({ users = [], onSave }) {
@@ -29,7 +30,9 @@ export class TaskModal {
     if (!this.modalEl) return;
     this.modalEl.classList.remove('active');
     setTimeout(() => {
-      this.modalEl.remove();
+      if (this.modalEl && this.modalEl.parentNode) {
+        this.modalEl.remove();
+      }
       this.modalEl = null;
     }, 250);
   }
@@ -87,7 +90,10 @@ export class TaskModal {
 
             <div class="form-grid-2">
               <div class="form-group">
-                <label class="form-label" for="task-assignee">Assignee</label>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
+                  <label class="form-label" for="task-assignee" style="margin-bottom:0;">Assignee</label>
+                  <button type="button" id="quick-add-member-btn" style="font-size: var(--font-xs); color: var(--primary-500); font-weight: 600; cursor: pointer; border: none; background: none; text-decoration: underline;">+ New Member</button>
+                </div>
                 <select id="task-assignee" name="assigneeId" class="select">
                   ${this.users.map(u => `
                     <option value="${u.id}" ${this.task?.assigneeId === u.id ? 'selected' : ''}>${u.name}</option>
@@ -119,10 +125,30 @@ export class TaskModal {
   bindEvents() {
     const closeBtn = this.modalEl.querySelector('.close-btn');
     const cancelBtn = this.modalEl.querySelector('.cancel-btn');
+    const quickAddBtn = this.modalEl.querySelector('#quick-add-member-btn');
     const form = this.modalEl.querySelector('#task-form');
 
     closeBtn.addEventListener('click', () => this.close());
     cancelBtn.addEventListener('click', () => this.close());
+
+    if (quickAddBtn) {
+      quickAddBtn.addEventListener('click', () => {
+        const memberModal = new TeamMemberModal({
+          onSave: (newMember) => {
+            this.users.push(newMember);
+            const selectEl = this.modalEl.querySelector('#task-assignee');
+            if (selectEl) {
+              const option = document.createElement('option');
+              option.value = newMember.id;
+              option.textContent = newMember.name;
+              option.selected = true;
+              selectEl.appendChild(option);
+            }
+          }
+        });
+        memberModal.open();
+      });
+    }
     
     this.modalEl.addEventListener('click', (e) => {
       if (e.target === this.modalEl) this.close();

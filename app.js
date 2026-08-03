@@ -19,6 +19,7 @@ class TaskFlowApp {
     this.navbar = null;
     this.currentPageView = null;
 
+    storage.initSeedData();
     this.initTheme();
     this.initAuthListener();
     this.initRouter();
@@ -103,7 +104,8 @@ class TaskFlowApp {
     if (!this.navbar) {
       this.navbar = new Navbar({
         onThemeToggle: () => this.toggleTheme(),
-        onMobileSidebarToggle: () => this.sidebar.toggleMobile(),
+        onSidebarToggle: () => this.sidebar.toggle(),
+        onMobileSidebarToggle: () => this.sidebar.toggle(),
         onSearch: (query) => {
           if (this.currentRoute !== 'tasks') {
             window.location.hash = 'tasks';
